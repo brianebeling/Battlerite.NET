@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>The core components of the Battlerite.NET library.</Description>
+    <Authors>Rethought</Authors>
+    <PackageTags>Battlerite</PackageTags>
+    <PackageLicenseUrl>http://opensource.org/licenses/MIT</PackageLicenseUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <LangVersion>latest</LangVersion>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CacheManager.Serialization.Json" Version="1.1.2" />
+    <PackageReference Include="JsonApiSerializer" Version="1.3.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Optional" Version="4.0.0" />
+    <PackageReference Include="RavenSharp.Core" Version="1.0.0-beta-1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Battlerite.NET.Assets\Battlerite.NET.Assets.csproj" />
+  </ItemGroup>
+
+</Project>
