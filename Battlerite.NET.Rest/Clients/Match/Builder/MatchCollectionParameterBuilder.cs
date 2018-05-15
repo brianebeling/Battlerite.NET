@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Battlerite.NET.Rest.Parameters;
 
@@ -13,7 +12,9 @@ namespace Battlerite.NET.Rest.Clients.Match.Builder
         private SortOrder sortOrder;
 
         // TODO Builder
-        public MatchCollectionParameterBuilder WirthSorting(SortCriteria sortCriteria, SortOrder sortOrder = SortOrder.Ascending)
+        public MatchCollectionParameterBuilder WirthSorting(
+            SortCriteria sortCriteria,
+            SortOrder sortOrder = SortOrder.Ascending)
         {
             this.sortCriteria = sortCriteria;
             this.sortOrder = sortOrder;
@@ -43,7 +44,7 @@ namespace Battlerite.NET.Rest.Clients.Match.Builder
 
 
             // TODO Move this out of method
-            if (sortCriteria != default(SortCriteria))
+            if (sortCriteria != default)
             {
                 var prefix = string.Empty;
 
@@ -52,10 +53,11 @@ namespace Battlerite.NET.Rest.Clients.Match.Builder
 
                 parameterList.Add(
                     new Parameter(
-                        "sort", prefix +
-                        char.ToLowerInvariant(sortCriteria.ToString().First()) + sortCriteria.ToString().Substring(1)));
+                        "sort",
+                        prefix +
+                        char.ToLowerInvariant(sortCriteria.ToString().First()) +
+                        sortCriteria.ToString().Substring(1)));
             }
-
 
 
             if (filter != default(FilterBuilder))

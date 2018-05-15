@@ -19,6 +19,4 @@
     <VersionSuffix Condition=" '$(VersionSuffix)' == ''">dev</VersionSuffix>
   </PropertyGroup>
 
-
-
 </Project>

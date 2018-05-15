@@ -165,7 +165,9 @@ namespace Battlerite.NET.Rest.Converters
                                     GetOrAddMode(characterBuilder.Modes, "AI").Won = value;
                                     continue;
                                 default:
-                                    throw new ArgumentOutOfRangeException(nameof(mapping.StackableRangeName), mapping.StackableRangeName);
+                                    throw new ArgumentOutOfRangeException(
+                                        nameof(mapping.StackableRangeName),
+                                        mapping.StackableRangeName);
                             }
                         case IdRangeName.Empty:
 

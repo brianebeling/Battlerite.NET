@@ -7,8 +7,8 @@ namespace Battlerite.NET.Rest.Clients.Player
 {
     public interface IPlayerClient
     {
-        Task<Option<PopulatedPlayer>> GetPlayerByPlayerIdAsync(long id);
         Task<Option<PopulatedPlayer>> GetPlayerByNameAsync(string playerName);
+        Task<Option<PopulatedPlayer>> GetPlayerByPlayerIdAsync(long id);
         Task<Option<PopulatedPlayer>> GetPlayerBySteamIdAsync(ulong steamId);
         Task<Option<IReadOnlyList<PopulatedPlayer>>> GetPlayersByNameAsync(IEnumerable<string> playerNames);
         Task<Option<IReadOnlyList<PopulatedPlayer>>> GetPlayersByPlayerIdAsync(IEnumerable<long> playerIds);

@@ -34,18 +34,19 @@ namespace Battlerite.NET.Rest.Clients.Player
             this.builder = builder;
         }
 
+        public async Task<Option<PopulatedPlayer>> GetPlayerByNameAsync(string playerName)
+        {
+            return Option.Some(await GetPlayerByFilter(PlayerFilter.PlayerName, playerName));
+        }
+
         public async Task<Option<PopulatedPlayer>> GetPlayerByPlayerIdAsync(long id)
         {
             await UpdateStackables();
 
-            return Option.Some(await requester.Request<PopulatedPlayer>(
-                builder.Build(EndPoints.SinglePlayer + id),
-                jsonApiSerializerSettings));
-        }
-
-        public async Task<Option<PopulatedPlayer>> GetPlayerByNameAsync(string playerName)
-        {
-            return Option.Some(await GetPlayerByFilter(PlayerFilter.PlayerName, playerName));
+            return Option.Some(
+                await requester.Request<PopulatedPlayer>(
+                    builder.Build(EndPoints.SinglePlayer + id),
+                    jsonApiSerializerSettings));
         }
 
         public async Task<Option<PopulatedPlayer>> GetPlayerBySteamIdAsync(ulong steamId)
@@ -68,22 +69,6 @@ namespace Battlerite.NET.Rest.Clients.Player
             return await GetPlayersByFilter(PlayerFilter.SteamId, steamIds);
         }
 
-        private async Task<Option<IReadOnlyList<PopulatedPlayer>>> GetPlayersByFilter<T>(
-            string filterName,
-            IEnumerable<T> filterItems)
-        {
-            await UpdateStackables();
-
-            return Option.Some(await requester.Request<IReadOnlyList<PopulatedPlayer>>(
-                builder.Build(
-                    EndPoints.Players,
-                    new List<IParameter>
-                    {
-                        new Parameter($"filter[{filterName}]", string.Join(",", filterItems))
-                    }),
-                jsonApiSerializerSettings));
-        }
-
         private async Task<PopulatedPlayer> GetPlayerByFilter(
             string filterName,
             string filterItem)
@@ -100,6 +85,23 @@ namespace Battlerite.NET.Rest.Clients.Player
                 jsonApiSerializerSettings);
 
             return result.FirstOrDefault();
+        }
+
+        private async Task<Option<IReadOnlyList<PopulatedPlayer>>> GetPlayersByFilter<T>(
+            string filterName,
+            IEnumerable<T> filterItems)
+        {
+            await UpdateStackables();
+
+            return Option.Some(
+                await requester.Request<IReadOnlyList<PopulatedPlayer>>(
+                    builder.Build(
+                        EndPoints.Players,
+                        new List<IParameter>
+                        {
+                            new Parameter($"filter[{filterName}]", string.Join(",", filterItems))
+                        }),
+                    jsonApiSerializerSettings));
         }
 
         private async Task UpdateStackables()
