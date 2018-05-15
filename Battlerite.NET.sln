@@ -3,13 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Battlerite.NET", "Battlerite.NET\Battlerite.NET.csproj", "{A4538238-E9D2-49D6-B426-3DF6376F4506}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Battlerite.NET.Test", "Battlerite.NET.Test\Battlerite.NET.Test.csproj", "{8E27A511-AAAB-415A-8109-A50764479DF1}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Battlerite.NET.Assets", "Battlerite.NET.Assets\Battlerite.NET.Assets.csproj", "{268887C6-A0D3-40E3-A65F-6F07F12B25FE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Battlerite.NET.Rest", "Battlerite.NET.Rest\Battlerite.NET.Rest.csproj", "{7FB2EC9C-0C7C-4A12-96B4-E1B6D5B5103D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{50C8B59B-0C55-4A8E-A28E-4386CB4F2CCB}"
+	ProjectSection(SolutionItems) = preProject
+		Battlerite.NET.targets = Battlerite.NET.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Battlerite.NET", "Battlerite.NET\Battlerite.NET.csproj", "{032AC0B9-D932-4788-AE7C-F1B981AAA1C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,14 +20,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A4538238-E9D2-49D6-B426-3DF6376F4506}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A4538238-E9D2-49D6-B426-3DF6376F4506}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A4538238-E9D2-49D6-B426-3DF6376F4506}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A4538238-E9D2-49D6-B426-3DF6376F4506}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8E27A511-AAAB-415A-8109-A50764479DF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8E27A511-AAAB-415A-8109-A50764479DF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8E27A511-AAAB-415A-8109-A50764479DF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8E27A511-AAAB-415A-8109-A50764479DF1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{268887C6-A0D3-40E3-A65F-6F07F12B25FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{268887C6-A0D3-40E3-A65F-6F07F12B25FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{268887C6-A0D3-40E3-A65F-6F07F12B25FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +28,10 @@ Global
 		{7FB2EC9C-0C7C-4A12-96B4-E1B6D5B5103D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FB2EC9C-0C7C-4A12-96B4-E1B6D5B5103D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FB2EC9C-0C7C-4A12-96B4-E1B6D5B5103D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{032AC0B9-D932-4788-AE7C-F1B981AAA1C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{032AC0B9-D932-4788-AE7C-F1B981AAA1C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{032AC0B9-D932-4788-AE7C-F1B981AAA1C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{032AC0B9-D932-4788-AE7C-F1B981AAA1C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

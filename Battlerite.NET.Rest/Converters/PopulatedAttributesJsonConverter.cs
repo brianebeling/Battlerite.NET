@@ -158,14 +158,14 @@ namespace Battlerite.NET.Rest.Converters
                                 case "CharacterBattlegroundsWins":
                                     GetOrAddMode(characterBuilder.Modes, "CharacterBattlegrounds").Won = value;
                                     continue;
-                                case "CharacterBattlegrounds3v3Losses":
+                                case "CharacterBattlegroundsLosses":
                                     GetOrAddMode(characterBuilder.Modes, "CharacterBattlegrounds").Lost = value;
                                     continue;
                                 case "VsAIPlayed":
                                     GetOrAddMode(characterBuilder.Modes, "AI").Won = value;
                                     continue;
                                 default:
-                                    throw new ArgumentOutOfRangeException(mapping.StackableRangeName);
+                                    throw new ArgumentOutOfRangeException(nameof(mapping.StackableRangeName), mapping.StackableRangeName);
                             }
                         case IdRangeName.Empty:
 

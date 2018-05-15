@@ -43,7 +43,7 @@ namespace Battlerite.NET.Rest.Clients.Match.Builder
 
 
             // TODO Move this out of method
-            if (sortCriteria != default)
+            if (sortCriteria != default(SortCriteria))
             {
                 var prefix = string.Empty;
 

@@ -1,0 +1,27 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  
+  <PropertyGroup>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <VersionSuffix>alpha</VersionSuffix>
+    <Authors>Rethought</Authors>
+    <PackageTags>Battlerite;Stunlock</PackageTags>
+    <PackageIconUrl>https://rethought.me/data/battlerite/logo64.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/RethoughtSolutions/Battlerite.NET</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/RethoughtSolutions/Battlerite.NET/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>git://github.com/RethoughtSolutions/Battlerite.NET</RepositoryUrl>
+    <BuildNumber></BuildNumber>
+  </PropertyGroup>
+
+  <!-- If BuildNumber is empty set append a "dev" to VersionSuffix -->
+  <PropertyGroup Condition=" '$(BuildNumber)' == '' ">
+    <VersionSuffix Condition=" '$(VersionSuffix)' != ''">$(VersionSuffix)-dev</VersionSuffix>
+    <VersionSuffix Condition=" '$(VersionSuffix)' == ''">dev</VersionSuffix>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CacheManager.Core" Version="1.1.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+
+</Project>

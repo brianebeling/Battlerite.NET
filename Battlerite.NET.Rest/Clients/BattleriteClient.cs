@@ -4,7 +4,7 @@ using Battlerite.NET.Rest.Clients.Player;
 
 namespace Battlerite.NET.Rest.Clients
 {
-    public class BattleriteClient
+    public class BattleriteClient : IBattleriteClient
 
     {
         public IAssetClient Assets { get; }
@@ -20,6 +20,14 @@ namespace Battlerite.NET.Rest.Clients
             Players = players;
             Matches = matches;
             Assets = assets;
+        }
+
+        public static BattleriteClient Create(
+            IAssetClient assetClient,
+            IMatchClient matchClient,
+            IPlayerClient playerClient)
+        {
+            return new BattleriteClient(assetClient, matchClient, playerClient);
         }
 
         // TODO Get Map by Id

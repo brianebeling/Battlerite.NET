@@ -2,7 +2,7 @@ namespace Battlerite.NET.Rest
 {
     public static class EndPoints
     {
-        public const string BaseUrl = "https://api.dc01.gamelockerapp.com/shards/global";
+        public const string BaseUrl = "https://api.developer.battlerite.com/shards/global";
 
         public const string Matches = "/matches";
 

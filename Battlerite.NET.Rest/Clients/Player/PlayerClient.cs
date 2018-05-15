@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Battlerite.NET.Assets.Clients;
 using Battlerite.NET.Assets.Stackables;
@@ -7,6 +8,7 @@ using Battlerite.NET.Rest.DTOs.Players;
 using Battlerite.NET.Rest.Parameters;
 using Battlerite.NET.Rest.Requester;
 using Newtonsoft.Json;
+using Optional;
 
 namespace Battlerite.NET.Rest.Clients.Player
 {
@@ -32,44 +34,72 @@ namespace Battlerite.NET.Rest.Clients.Player
             this.builder = builder;
         }
 
-        public async Task<PopulatedPlayer> GetPlayerByPlayerIdAsync(long id)
+        public async Task<Option<PopulatedPlayer>> GetPlayerByPlayerIdAsync(long id)
         {
             await UpdateStackables();
 
-            return await requester.Request<PopulatedPlayer>(
+            return Option.Some(await requester.Request<PopulatedPlayer>(
                 builder.Build(EndPoints.SinglePlayer + id),
-                jsonApiSerializerSettings);
+                jsonApiSerializerSettings));
         }
 
-        public async Task<IReadOnlyList<PopulatedPlayer>> GetPlayersByNameAsync(IEnumerable<string> playerNames)
+        public async Task<Option<PopulatedPlayer>> GetPlayerByNameAsync(string playerName)
+        {
+            return Option.Some(await GetPlayerByFilter(PlayerFilter.PlayerName, playerName));
+        }
+
+        public async Task<Option<PopulatedPlayer>> GetPlayerBySteamIdAsync(ulong steamId)
+        {
+            return Option.Some(await GetPlayerByFilter(PlayerFilter.SteamId, steamId.ToString()));
+        }
+
+        public async Task<Option<IReadOnlyList<PopulatedPlayer>>> GetPlayersByNameAsync(IEnumerable<string> playerNames)
         {
             return await GetPlayersByFilter(PlayerFilter.PlayerName, playerNames);
         }
 
-        public async Task<IReadOnlyList<PopulatedPlayer>> GetPlayersByPlayerIdAsync(IEnumerable<long> playerIds)
+        public async Task<Option<IReadOnlyList<PopulatedPlayer>>> GetPlayersByPlayerIdAsync(IEnumerable<long> playerIds)
         {
             return await GetPlayersByFilter(PlayerFilter.PlayerId, playerIds);
         }
 
-        public async Task<IReadOnlyList<PopulatedPlayer>> GetPlayersBySteamIdAsync(IEnumerable<ulong> steamIds)
+        public async Task<Option<IReadOnlyList<PopulatedPlayer>>> GetPlayersBySteamIdAsync(IEnumerable<ulong> steamIds)
         {
             return await GetPlayersByFilter(PlayerFilter.SteamId, steamIds);
         }
 
-        private async Task<IReadOnlyList<PopulatedPlayer>> GetPlayersByFilter<T>(
+        private async Task<Option<IReadOnlyList<PopulatedPlayer>>> GetPlayersByFilter<T>(
             string filterName,
-            IEnumerable<T> filter)
+            IEnumerable<T> filterItems)
         {
             await UpdateStackables();
 
-            return await requester.Request<IReadOnlyList<PopulatedPlayer>>(
+            return Option.Some(await requester.Request<IReadOnlyList<PopulatedPlayer>>(
                 builder.Build(
                     EndPoints.Players,
                     new List<IParameter>
                     {
-                        new Parameter($"filter[{filterName}]", string.Join(",", filter))
+                        new Parameter($"filter[{filterName}]", string.Join(",", filterItems))
+                    }),
+                jsonApiSerializerSettings));
+        }
+
+        private async Task<PopulatedPlayer> GetPlayerByFilter(
+            string filterName,
+            string filterItem)
+        {
+            await UpdateStackables();
+
+            var result = await requester.Request<IReadOnlyList<PopulatedPlayer>>(
+                builder.Build(
+                    EndPoints.Players,
+                    new List<IParameter>
+                    {
+                        new Parameter($"filter[{filterName}]", filterItem)
                     }),
                 jsonApiSerializerSettings);
+
+            return result.FirstOrDefault();
         }
 
         private async Task UpdateStackables()

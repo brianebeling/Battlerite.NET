@@ -11,16 +11,16 @@ For the more specific cases each package is also available individually.
 
 Battlerite.NET is split into multiple packages. Each package represents a key component.
 
-#### [Battlerite.NET]()
+#### [Battlerite.NET](https://www.nuget.org/packages/Rethought.Battlerite.NET/)
 
 The metapackage combining all packages below
 
-#### [Battlerite.NET.Assets]()
+#### [Battlerite.NET.Assets](https://www.nuget.org/packages/Rethought.Battlerite.NET.Assets/)
 
 This package contains everything related to [Assets](https://github.com/StunlockStudios/battlerite-assets).
 These are used to map values from the Battlerite API to localized Strings or to more meta Informations.
 
-#### [Battlerite.NET.Rest]()
+#### [Battlerite.NET.Rest](https://www.nuget.org/packages/Rethought.Battlerite.NET.Rest/)
 
 This package interacts with the official Battlerite API. It also utilizes Battlerite.NET.Assets to populate meta informations.
 

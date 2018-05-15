@@ -4,28 +4,21 @@ dotnet: 2.0.0
 dist: trusty
 sudo: required
 
-install:
-  - dotnet restore
+
 
 script:
-# Build and Pack Rest
-  - dotnet build .\Battlerite.NET.Assets\ --configuration Release
-  - dotnet pack .\Battlerite.NET.Assets\ --configuration Release
+  - dotnet restore Battlerite.NET.sln /p:BuildNumber=$TRAVIS_BUILD_NUMBER
+  - dotnet build Battlerite.NET.sln --configuration Release /p:BuildNumber=$TRAVIS_BUILD_NUMBER
 
-  - dotnet build .\Battlerite.NET.Rest\ --configuration Release
-  - dotnet pack .\Battlerite.NET.Rest\ --configuration Release
-
-  - dotnet build .\Battlerite.NET\ --configuration Release
-  - dotnet pack .\Battlerite.NET\ --configuration Release
+  - dotnet pack ./Battlerite.NET.Assets/ --configuration Release --output "../Packets" --no-build /p:BuildNumber=$TRAVIS_BUILD_NUMBER --version-suffix "alpha-$TRAVIS_BUILD_NUMBER"
+  - dotnet pack ./Battlerite.NET.Rest/ --configuration Release --output "../Packets" --no-build /p:BuildNumber=$TRAVIS_BUILD_NUMBER --version-suffix "alpha-$TRAVIS_BUILD_NUMBER"
+  - dotnet pack ./Battlerite.NET/ --configuration Release --output "../Packets" --no-build /p:BuildNumber=$TRAVIS_BUILD_NUMBER --version-suffix "alpha-$TRAVIS_BUILD_NUMBER"
 
 deploy:
   provider: script
   skip_cleanup: true
   script:
-  - dotnet nuget push .\Battlerite.NET.Assets\bin\Release\*.nupkg --source $NUGET_FEEDURL
+  - cd ./Packets/ && ls && dotnet nuget push Rethought.Battlerite.NET.Assets.*.nupkg -k "$NUGET_KEY" -s "$NUGET_URL" && dotnet nuget push Rethought.Battlerite.NET.Rest.*.nupkg -k "$NUGET_KEY" -s "$NUGET_URL" && dotnet nuget push Rethought.Battlerite.NET.*.nupkg -k "$NUGET_KEY" -s "$NUGET_URL"
 
-  - dotnet nuget push .\Battlerite.NET.Rest\bin\Release\*.nupkg --source $NUGET_FEEDURL
-
-  - dotnet nuget push .\Battlerite.NET\bin\Release\*.nupkg --source $NUGET_FEEDURL
   on:
     branch: master

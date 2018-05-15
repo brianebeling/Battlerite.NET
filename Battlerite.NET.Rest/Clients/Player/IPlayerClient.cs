@@ -1,14 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Battlerite.NET.Rest.DTOs.Players;
+using Optional;
 
 namespace Battlerite.NET.Rest.Clients.Player
 {
     public interface IPlayerClient
     {
-        Task<PopulatedPlayer> GetPlayerByPlayerIdAsync(long id);
-        Task<IReadOnlyList<PopulatedPlayer>> GetPlayersByNameAsync(IEnumerable<string> playerNames);
-        Task<IReadOnlyList<PopulatedPlayer>> GetPlayersByPlayerIdAsync(IEnumerable<long> playerIds);
-        Task<IReadOnlyList<PopulatedPlayer>> GetPlayersBySteamIdAsync(IEnumerable<ulong> steamIds);
+        Task<Option<PopulatedPlayer>> GetPlayerByPlayerIdAsync(long id);
+        Task<Option<PopulatedPlayer>> GetPlayerByNameAsync(string playerName);
+        Task<Option<PopulatedPlayer>> GetPlayerBySteamIdAsync(ulong steamId);
+        Task<Option<IReadOnlyList<PopulatedPlayer>>> GetPlayersByNameAsync(IEnumerable<string> playerNames);
+        Task<Option<IReadOnlyList<PopulatedPlayer>>> GetPlayersByPlayerIdAsync(IEnumerable<long> playerIds);
+        Task<Option<IReadOnlyList<PopulatedPlayer>>> GetPlayersBySteamIdAsync(IEnumerable<ulong> steamIds);
     }
 }
