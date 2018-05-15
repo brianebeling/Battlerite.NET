@@ -4,8 +4,9 @@
  
   <PropertyGroup>
     <AssemblyName>Rethought.Battlerite.NET</AssemblyName>
-    <TargetFramework>netstandard2.0</TargetFramework>
     <Description>An asynchronous API wrapper for the official Battlerite API. This metapackage contains all core and optional packages of Battlerite.NET</Description>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
@@ -13,4 +14,19 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Rethought.Battlerite.NET.Rest" Version="1.0.0-alpha-42" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Battlerite.NET.Assets\Battlerite.NET.Assets.csproj" />
+    <ProjectReference Include="..\Battlerite.NET.Rest\Battlerite.NET.Rest.csproj" />
+  </ItemGroup>
+
+  <!-- Workaround to include DLLs in package rather than archieving the same thing with an output nuspec -->
+  <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="ResolveProjectReferences">
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(_ResolvedProjectReferencePaths)" />
+    </ItemGroup>
+  </Target>
+
 </Project>
