@@ -10,10 +10,7 @@ namespace Battlerite.NET.Assets.Clients.Factories
         public IAssetClient Create(
             HttpClient httpClient)
         {
-            return new CachedAssetClient(
-                httpClient,
-                new BaseCacheManager<ReadOnlyDictionary<long, Mapping>>(
-                    new CacheManagerConfiguration()));
+            return new AssetClient(httpClient);
         }
     }
 }
