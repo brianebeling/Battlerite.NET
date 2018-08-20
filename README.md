@@ -2,6 +2,14 @@
 
 **.Net Standard Library** for [Battlerites](https://developer.battlerite.com/) Official API
 
+### THIS PROJECT IS NOT LONGER MAINTAINED. ###
+
+There is missing documentation, random exceptions and lots of TODOs. If you want to take the challenge, go ahead.
+The decision was made because Stunlock Studios recent announcement that Battlerite Royale will be another Game as opposed to Mode (as promised!),
+the lack of communication with the API devs and an overall mistrust in Sunluck Studios. I maybe will pick this up
+at a later date and fix all the remaining bugs and todos. But only if Stunluck Studios can actually deliver and
+Battlerite Royale won't be a complete disaster playerbase wise.
+
 ## Installation
 
 It is recommended to use the metapackage which contains all key components and should be sufficient in the majority of cases.

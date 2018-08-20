@@ -15,9 +15,6 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Rethought.Battlerite.NET.Rest" Version="1.0.0-alpha-42" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Battlerite.NET.Assets\Battlerite.NET.Assets.csproj" />
     <ProjectReference Include="..\Battlerite.NET.Rest\Battlerite.NET.Rest.csproj" />
   </ItemGroup>
